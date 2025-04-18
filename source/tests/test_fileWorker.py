@@ -1,6 +1,7 @@
 import pytest
 
 from ..services.FileWorker import FileWorker
+from ..services.Printer import Printer
 
 @pytest.fixture
 def not_existed_file():
