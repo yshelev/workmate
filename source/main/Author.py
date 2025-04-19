@@ -2,12 +2,24 @@ from source.models.Report import Report, HandlerReport
 
 
 class Author:
+	"""
+	Родительский класс Автор. Поля класса:
+	__data: Данные, на основе которых строится отчет.
+	__report_fields: Поля отчета, которые следует заполнить
+	"""
 	__data: list[str]
 	__report_fields: list[str]
 	def create(self) -> Report:
+		"""
+		Создает и возвращает объект класса Report
+		:return:
+		"""
 		...
 
 class HandlerAuthor(Author):
+	"""
+	Автор отчета handlers
+	"""
 	__LEVELS = [
 		'DEBUG',
 		'INFO',
@@ -29,7 +41,11 @@ class HandlerAuthor(Author):
 		self.__data = data
 
 	def create(self) -> HandlerReport:
-		handlers = {}
+		"""
+		На основе данных, полученных при инициализации, создает объект класса HandlerReport
+		:return:
+		"""
+		handlers: dict[str: dict[str: int]] = {}
 
 
 		for log in self.__data:
@@ -64,14 +80,23 @@ class HandlerAuthor(Author):
 
 	@staticmethod
 	def __get_handler(data: list[str]):
-
+		"""
+		Вспомогательный метод для метода create(). В отдельно взятом логе находит handler и возвращает его, иначе возвращает None
+		:param data: Распаршенный лог
+		:return:
+		"""
 		for log_part in data:
 			if log_part[0] == "/":
 				return log_part
 
 	def __create_report(self,
 	                    data: dict[str: dict[str: int]]) -> HandlerReport:
-		output = []
+		"""
+		Создает объект класса репорт на основе словаря data
+		:param data: Словарь исходных данных
+		:return:
+		"""
+		output: list[list[int | str]] = []
 		handlers = list(data.keys())
 		handlers.sort()
 		total = 0

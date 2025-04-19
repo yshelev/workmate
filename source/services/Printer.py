@@ -2,12 +2,20 @@ from source.models.Report import Report, HandlerReport
 
 
 class Printer:
+	"""
+	Родительский класс, предназначенный для вывода отчетов в консоль
+	Поля: __report - отчет, который нужно вывести
+	Методы: print() - вывод отчета
+	"""
 	__report: Report
 	def print(self):
 		...
 
 
 class PrinterHandler(Printer):
+	"""
+	Класс, предназначенный для вывода отчета Handler в консоль
+	"""
 	__report: HandlerReport
 	def __init__(self, report: HandlerReport):
 		self.__report = report
@@ -16,6 +24,10 @@ class PrinterHandler(Printer):
 		self.__report = report
 
 	def __prepare(self):
+		"""
+		"Подготовка к выводу", создание необходимых условий и задание нужных переменных
+		:return:
+		"""
 		values = {
 			"handlers": list(self.__report.handlers),
 			"debug": list(self.__report.debug),
@@ -38,6 +50,12 @@ class PrinterHandler(Printer):
 	@staticmethod
 	def __create_output_string(values: list[str],
 	                           mx_len_values: list[int]) -> str:
+		"""
+		На основе переданных значений отдает строку, которую следует вывести
+		:param values: Значение строки
+		:param mx_len_values: Длина вывода конкретных значений
+		:return:
+		"""
 		output = ''
 
 		for idx in range(len(values)):
@@ -67,6 +85,10 @@ class PrinterHandler(Printer):
 
 
 	def print(self):
+		"""
+		Метод, организующий вывод в консоль отчета.
+		:return:
+		"""
 		values, mx_len_values, output_length, total = self.__prepare()
 
 		print(f"Total requests: {total}")

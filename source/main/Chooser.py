@@ -4,6 +4,9 @@ from source.services.Printer import PrinterHandler
 
 
 class Chooser:
+	"""
+	Класс, предназначенный для распределения создания отчетов по их типу (--report handlers)
+	"""
 	HANDLERS = "handlers"
 
 	def create(self,
