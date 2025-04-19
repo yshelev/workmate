@@ -4,16 +4,15 @@ from source.services.Printer import PrinterHandler
 
 
 class Chooser:
-	HANDLER = "HANDLER"
+	HANDLERS = "handlers"
 
 	def create(self,
 	           paths: list[str],
 	           short_flags: list[str],
 	           long_flags: dict[str, str]) -> None:
-		report_type = long_flags.get("--report", "HANDLER")
-
+		report_type = long_flags.get("--report", "handlers")
 		match report_type:
-			case self.HANDLER:
+			case self.HANDLERS:
 				self.__create_handler_report(paths)
 
 
