@@ -30,6 +30,8 @@
    ```sh
    python main.py [paths to files] --report [report name] 
    ```
+Пример работы программы:
+![image](https://github.com/user-attachments/assets/2a5917ef-321f-4747-82be-7bb69c74d38e)
 
 Для запуска тестов: 
 1. Перейдите в директорию tests:
@@ -43,7 +45,9 @@
 3. Для получения процента покрытия кода тестами:
    ```sh
      pytest --cov
-   ``` 
+   ```
+Покрытие тестами: 
+![image](https://github.com/user-attachments/assets/4b501d37-c172-49ed-ae65-d8ea28831472)
 
 
 ## Команда проекта
